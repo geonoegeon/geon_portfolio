@@ -1,0 +1,339 @@
+/* 이감 프로젝트 전용 독립 스타일시트 (yigam 버전) */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #f9f9f9;
+}
+
+/* 2. 상단 헤더 타이틀 */
+.yigam-project-header {
+    text-align: center;
+    padding: 80px 20px 20px 20px;
+}
+.yigam-project-header h1 {
+    font-size: 28px;
+    color: #222;
+    margin: 0 0 10px 0;
+}
+.yigam-project-header p {
+    font-size: 16px;
+    color: #666;
+    margin: 0;
+}
+
+/* 3. 대표 이미지 영역 카드 레이아웃 */
+.yigam-project-wrapper {
+    display: flex;
+    flex-direction: row;     
+    /* 💡 4개 배치에 맞춰 다단 분배와 유연성 유지를 위해 flex-wrap 적용 및 정렬 설정 */
+    flex-wrap: wrap;
+    justify-content: center; 
+    align-items: stretch;    /* 카드들의 전체 높이를 균일하게 정렬 */
+    gap: 20px;               
+    padding: 30px 20px;
+    max-width: 1400px;       /* 4개 카드가 넓게 벌어지도록 가로 최대폭을 넓힘 */
+    margin: 0 auto;          
+}
+
+.yigam-project-card {
+    cursor: pointer;
+    flex: 1;                 
+    min-width: 260px;        /* 화면이 줄어들 때 카드가 너무 찌그러지는 것을 방지 */
+    max-width: 290px;        /* 4개 슬롯 분할에 가장 적절하고 균형 잡힌 가로폭 */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;  
+    justify-content: space-between;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.yigam-project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+/* 비율이 각기 다른 이미지를 형태 깨짐 없이 일정한 비율로 잡아주는 썸네일 박스 */
+.yigam-card-img-box {
+    width: 100%;
+    height: 350px;           /* 4칸 구성을 고려하여 썸네일 세로 높이를 약 30px 최적화 */
+    background-color: #eaeaea; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.yigam-project-card img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; /* 틀 크기에 맞춰 여백 없이 이미지 채우기 */
+    display: block;
+}
+
+/* 카드 하단 텍스트 영역 */
+.yigam-card-info {
+    padding: 15px;
+    text-align: center;
+    border-top: 1px solid #eee;
+    background-color: #fff;
+}
+.yigam-card-info h3 {
+    margin: 0 0 5px 0;
+    font-size: 15px;         /* 텍스트 줄바꿈 방지를 위해 폰트 크기 미세 조정 */
+    color: #333;
+}
+.yigam-card-info p {
+    margin: 0;
+    font-size: 12px;
+    color: #888;
+}
+
+/* 4. 모달창 전체 배경 */
+.yigam-modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.85); 
+}
+
+/* 모달 내부 흰색 팝업 콘텐츠 박스 */
+.yigam-modal-content {
+    background-color: #fff;
+    margin: 3% auto; 
+    padding: 30px;           
+    border-radius: 8px;
+    width: fit-content;      
+    max-width: 90%;          
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;  
+    justify-content: center;
+    align-items: center;     
+    gap: 20px;               
+}
+
+/* 비율이 극단적인 세로형 원본이 화면 밖으로 잘려 나가지 않도록 최대 높이 제어 */
+.yigam-modal-content img {
+    width: auto !important;  
+    max-width: 100%;         
+    max-height: 75vh;        
+    height: auto !important;
+    object-fit: contain !important; 
+    display: block;
+    border-radius: 6px;      
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* 첫 번째 세로형 동영상 전용 스타일 (인스타그램용 세로 비율 최적화) */
+#video1 {
+    width: 100%;
+    max-width: 400px !important;  
+    max-height: 70vh !important;  
+    object-fit: contain;          
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: block;
+}
+
+/* 두 번째, 세 번째, 네 번째 가로형 동영상 공통 스타일 (기존 크기 유지) */
+.video-horizontal {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: block;
+}
+
+/* 우측 상단 닫기 버튼 */
+.yigam-close {
+    position: fixed;
+    right: 25px;
+    top: 15px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1100;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* 태블릿 및 모바일 스크린 반응형 분기점 대응 */
+@media (max-width: 768px) {
+    .yigam-project-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 15px;
+    }
+    .yigam-project-card {
+        width: 100%;
+        max-width: 340px;
+    }
+    .yigam-card-img-box {
+        height: 300px;
+    }
+    .yigam-modal-content {
+        margin: 15% auto;
+        width: 95%;          
+        padding: 15px;
+    }
+    .yigam-modal-content img {
+        max-height: 60vh;
+    }
+    #video1 {
+        max-width: 100% !important;
+        max-height: 60vh !important;
+    }
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000000;
+    color: #4A69BD;
+    position: sticky;
+    padding: 0 5rem;
+    top: 0;
+    height: 100px;
+    z-index: 100;
+}
+
+a.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: #4A69BD;       /* 헤더 색상과 동일하게 유지 */
+}
+
+a.logo:hover {
+    color: #EBECF0;
+    transform: scale(1.05);
+}
+
+.navbar .menu { 
+    display: flex; 
+    list-style: none; /* 메인 메뉴 점 제거 */
+    margin: 0;
+    padding: 0;
+}
+
+.menu-item {
+    position: relative;
+    text-align: center;
+    width: 150px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none; /* 리스트 스타일 해제 */
+}
+
+.navbar a {
+    color: #EBECF0;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu-item > a:hover {
+    color: #4A69BD;
+    transform: translateY(-5px);
+}
+
+/* --- 3. 서브메뉴 (동그라미 제거 및 중앙 정렬 완벽 수정) --- */
+.submenu {
+    display: block;
+    opacity: 0;
+    visibility: hidden; 
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background-color: rgba(0, 0, 0, 0.95);
+    min-width: 180px;
+    padding: 15px 0;
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-top: 4px solid #4A69BD;
+    
+    /* 🛠️ [해결] 불필요한 기본 여백과 동그라미 점들을 완전히 제거합니다 */
+    list-style: none; 
+    margin: 0;
+    padding: 10px 0;
+}
+
+.submenu li {
+    list-style: none; /* 🛠️ [해결] 혹시 모를 각 항목의 불릿 기호 재방지 */
+    width: 100%;
+}
+
+.menu-item:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.submenu li a {
+    color: #EBECF0;
+    font-size: 14px;
+    transition: 0.3s;
+    
+    /* 🛠️ [해결] 완벽한 가운데 정렬을 위해 비대칭 패딩을 중앙 정렬 양식으로 교정합니다 */
+    padding: 12px 0; 
+    text-align: center; 
+}
+
+.submenu li a:hover {
+    background-color: #EBECF0;
+    color: #000;
+    /* 🛠️ [해결] 호버 시 텍스트가 오른쪽으로 밀려 삐뚤어지던 비대칭 패딩을 제거 */
+    padding-left: 0; 
+}
+
+/* 태블릿 및 모바일 반응형 분기점 (하단 추가) */
+@media (max-width: 768px) {
+    header {
+        padding: 0 2rem;
+    }
+    .menu-item {
+        width: 100px;
+    }
+    .news-project-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        padding: 15px;
+    }
+    .news-project-card {
+        width: 100%;
+        max-width: 340px;
+    }
+    .news-card-img-box {
+        height: 340px;
+    }
+    .news-modal-content {
+        margin: 15% auto;
+        width: 95%;          
+        padding: 10px;
+    }
+    .news-modal-content img {
+        max-height: 70vh;
+    }
+}

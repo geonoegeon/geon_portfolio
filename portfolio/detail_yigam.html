@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>산학협력 프로젝트</title>
+    <link rel="stylesheet" href="css/detail_yigam.css">
+</head>
+<body>
+<header>
+    <a href="portfolio.html" class="logo">MARKETER GEON</a>
+    <nav class="navbar">
+        <ul class="menu">
+            <li class="menu-item"><a href="portfolio.html#about-me">About</a></li>
+            <li class="menu-item">
+                <a href="portfolio.html#work">Portfolio</a>
+                <ul class="submenu">
+                    <li><a href="detail_template.html">상세페이지</a></li>
+                    <li><a href="detail_yigam.html">산학협력</a></li>
+                    <li><a href="detail_cardnews.html">카드뉴스</a></li>
+                </ul>
+            </li>
+            <li class="menu-item"><a href="portfolio.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="yigam-project-header">
+    <h1>산학협력 프로젝트</h1>
+    <p>브랜드 협력 프로젝트 상세 내용입니다.</p>
+</div>
+
+<div class="yigam-project-wrapper">
+    <div class="yigam-project-card" onclick="openYigamModal('yigamModal1', 'https://www.youtube.com/embed/a_sfDnyqnAE')">
+        <div class="yigam-card-img-box"><img src="img/이감 주파수.png" alt="이감 주파수"></div>
+        <div class="yigam-card-info"><h3>국어 성적 오르는 주파수</h3><p>Graphic & Video Content</p></div>
+    </div>
+    <div class="yigam-project-card" onclick="openYigamModal('yigamModal2', 'https://www.youtube.com/embed/WLHFdzq_zdg')">
+        <div class="yigam-card-img-box"><img src="img/이감 캠페인.png" alt="이감 캠페인"></div>
+        <div class="yigam-card-info"><h3>불법 공유 근절 캠페인</h3><p>Campaign & Video Content</p></div>
+    </div>
+    <div class="yigam-project-card" onclick="openYigamModal('yigamModal3', 'https://www.youtube.com/embed/4ywmlXwDDiM')">
+        <div class="yigam-card-img-box"><img src="img/이감 브랜드 소개1.jpeg" alt="이감 브랜드 소개"></div>
+        <div class="yigam-card-info"><h3>이감 브랜드 소개</h3><p>Brand Identity & Video Content</p></div>
+    </div>
+    <div class="yigam-project-card" onclick="openYigamModal('yigamModal4', 'https://www.youtube.com/embed/GEc9hhvzlAM')">
+        <div class="yigam-card-img-box"><img src="img/서부경찰서1.png" alt="서부경찰서"></div>
+        <div class="yigam-card-info"><h3>서부경찰서 가정폭력 캠페인</h3><p>Domestic Violence Campaign</p></div>
+    </div>
+</div>
+
+<div id="yigamModal1" class="yigam-modal"><span class="yigam-close" onclick="closeYigamModal('yigamModal1')">&times;</span><div class="yigam-modal-content"><iframe width="100%" height="315" src="" frameborder="0" allowfullscreen></iframe></div></div>
+<div id="yigamModal2" class="yigam-modal"><span class="yigam-close" onclick="closeYigamModal('yigamModal2')">&times;</span><div class="yigam-modal-content"><iframe width="100%" height="315" src="" frameborder="0" allowfullscreen></iframe></div></div>
+<div id="yigamModal3" class="yigam-modal"><span class="yigam-close" onclick="closeYigamModal('yigamModal3')">&times;</span><div class="yigam-modal-content"><iframe width="100%" height="315" src="" frameborder="0" allowfullscreen></iframe></div></div>
+<div id="yigamModal4" class="yigam-modal"><span class="yigam-close" onclick="closeYigamModal('yigamModal4')">&times;</span><div class="yigam-modal-content"><iframe width="100%" height="315" src="" frameborder="0" allowfullscreen></iframe></div></div>
+
+<script>
+    function openYigamModal(id, videoSrc) { 
+        const modal = document.getElementById(id);
+        modal.style.display = "block"; 
+        document.body.style.overflow = "hidden";
+        
+        // 모달을 열 때 iframe에 src를 넣어 재생 시작
+        const iframe = modal.querySelector("iframe");
+        iframe.src = videoSrc + "?autoplay=1"; 
+    }
+
+    function closeYigamModal(id) { 
+        const modal = document.getElementById(id);
+        modal.style.display = "none"; 
+        document.body.style.overflow = "auto";
+
+        // 모달을 닫을 때 src를 비워 재생 강제 종료
+        const iframe = modal.querySelector("iframe");
+        iframe.src = "";
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카드뉴스 프로젝트 상세</title>
+    <link rel="stylesheet" href="css/detail_cardnews.css">
+</head>
+<body>
+<header>
+    <!-- 💡 .logo를 <a> 태그로 감싸서 링크 기능을 추가했습니다 -->
+    <a href="portfolio.html" class="logo">MARKETER GEON</a>
+    
+    <nav class="navbar">
+        <ul class="menu">
+            <li class="menu-item"><a href="portfolio.html#about-me">About</a></li>
+            <li class="menu-item">
+                <a href="portfolio.html#work">Portfolio</a>
+                <ul class="submenu">
+                    <li><a href="detail_template.html">상세페이지</a></li>
+                    <li><a href="detail_yigam.html">산학협력</a></li>
+                    <li><a href="detail_cardnews.html">카드뉴스</a></li>
+                </ul>
+            </li>
+            <li class="menu-item"><a href="portfolio.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+    <div class="news-project-header">
+        <h1>카드뉴스 콘텐츠</h1>
+        <p>카드뉴스 디자인 상세 내용입니다.</p>
+    </div>
+
+    <div class="news-project-wrapper">
+        <div class="news-project-card" onclick="openNewsModal('newsModal1')">
+            <div class="news-card-img-box">
+                <img src="img/카드뉴스 이미지.png" alt="인하공전 캠퍼스 대표이미지">
+            </div>
+            <div class="news-card-info">
+                <h3>인하공전 캠퍼스 A to Z</h3>
+                <p>Campus Guide Editorial</p>
+            </div>
+        </div>
+
+        <div class="news-project-card" onclick="openNewsModal('newsModal2')">
+            <div class="news-card-img-box">
+                <img src="img/카드뉴스 이미지2.png" alt="느와르 영화 모음집 대표이미지">
+            </div>
+            <div class="news-card-info">
+                <h3>몰입감 넘치는 느와르 영화</h3>
+                <p>Movie Curation Contents</p>
+            </div>
+        </div>
+
+        <div class="news-project-card" onclick="openNewsModal('newsModal3')">
+            <div class="news-card-img-box">
+                <img src="img/카드뉴스 이미지3.png" alt="ON-AIR 브랜드 소개 대표이미지">
+            </div>
+            <div class="news-card-info">
+                <h3>ON-AIR 런칭 게시물</h3>
+                <p>App Identity Design</p>
+            </div>
+        </div>
+
+        <div class="news-project-card" onclick="openNewsModal('newsModal4')">
+            <div class="news-card-img-box">
+                <img src="img/카드뉴스 이미지4.png" alt="나이키 룩북 콘텐츠">
+            </div>
+            <div class="news-card-info">
+                <h3>나이키 룩북 콘텐츠</h3>
+                <p>Nike Contents</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="newsModal1" class="news-modal">
+        <span class="news-close" onclick="closeNewsModal('newsModal1')">&times;</span>
+        <div class="news-modal-content">
+            <img src="img/카드뉴스 이미지.png" alt="인하공전 캠퍼스 원본">
+        </div>
+    </div>
+
+    <div id="newsModal2" class="news-modal">
+        <span class="news-close" onclick="closeNewsModal('newsModal2')">&times;</span>
+        <div class="news-modal-content">
+            <img src="img/카드뉴스 이미지2.png" alt="느와르 영화 모음집 원본">
+        </div>
+    </div>
+
+    <div id="newsModal3" class="news-modal">
+        <span class="news-close" onclick="closeNewsModal('newsModal3')">&times;</span>
+        <div class="news-modal-content">
+            <img src="img/카드뉴스 이미지3.png" alt="ON-AIR 브랜드 소개 원본">
+        </div>
+    </div>
+
+    <div id="newsModal4" class="news-modal">
+        <span class="news-close" onclick="closeNewsModal('newsModal4')">&times;</span>
+        <div class="news-modal-content">
+            <img src="img/카드뉴스 이미지4.png" alt="ON-AIR 브랜드 소개 원본">
+        </div>
+    </div>
+
+<script>
+    function openNewsModal(id) { 
+        document.getElementById(id).style.display = "block"; 
+        document.body.style.overflow = "hidden"; // 모달 오픈 시 뒷배경 스크롤 방지
+    }
+    function closeNewsModal(id) { 
+        document.getElementById(id).style.display = "none"; 
+        document.body.style.overflow = "auto";   // 모달 닫을 때 스크롤 복구
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/detail.css">
+    <style>
+        /* 기본 스타일 초기화 및 레이아웃 설정 */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        /* 1. 맨위 좌상단 뒤로가기 버튼 */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 18px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            z-index: 10;
+        }
+        .back-button:hover {
+            background-color: #555;
+        }
+
+        /* 2. 이미지 위 중앙 설명 영역 (h1, p) */
+        .project-header {
+            text-align: center;
+            padding: 60px 20px 20px 20px; /* 뒤로가기 버튼 공간 확보 */
+        }
+        .project-header h1 {
+            font-size: 28px;
+            color: #222;
+            margin: 0 0 10px 0;
+        }
+        .project-header p {
+            font-size: 16px;
+            color: #666;
+            margin: 0;
+        }
+
+        /* 3. 대표 이미지 영역 - 가로 나열 및 크기 축소 */
+        .project-wrapper {
+            display: flex;
+            flex-direction: row;     /* 이미지를 가로로 나열 */
+            justify-content: center; /* 중앙 정렬 */
+            align-items: flex-start; /* 상단 기준 정렬 */
+            gap: 20px;               /* 이미지 사이의 간격 */
+            padding: 20px;
+            max-width: 1200px;       /* 전체 콘텐츠 최대 가로폭 제한 */
+            margin: 0 auto;          /* 가로 중앙 정렬 */
+        }
+
+        .project-card {
+            cursor: pointer;
+            flex: 1;                 /* 3개의 카드가 균등한 너비를 가짐 */
+            max-width: 300px;        /* 이미지 한 장의 최대 크기 제한 */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .project-card img {
+            width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important; /* 원본 비율 유지하며 전체 표시 */
+            display: block;
+        }
+
+        /* 4. 모달창 및 내부 이미지 가로 배치 설정 */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.85); 
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto; 
+            padding: 35px;           /* 사방에 여백을 주어 이미지를 감싸도록 설정 */
+            border-radius: 8px;
+            
+            /* 모달 박스가 이미지 전체를 알맞게 감싸도록 너비 설정 */
+            width: fit-content;      /* 내부 이미지 크기에 맞게 박스 크기가 늘어남 */
+            max-width: 95%;          /* 화면 대비 박스가 가득 찰 수 있도록 소폭 확장 */
+            box-sizing: border-box;
+            
+            /* 내부 이미지 가로 나열 */
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;     /* 세로축 가운데 정렬 */
+            gap: 25px;               /* 모달 박스 안 이미지 사이의 간격 */
+        }
+
+        .modal-content img {
+            width: auto !important;  /* 고정 가로폭 해제 */
+            /* ⭐ [핵심수정] 이미지가 깨지지 않고 더 크게 보이도록 최대 너비 상향 조정 */
+            max-width: 350px;        /* 기존 200px -> 350px로 변경하여 크게 확대 */
+            max-height: 600px;       /* 가로가 커진 만큼 세로 제한도 함께 확장 */
+            height: auto !important;
+            object-fit: contain !important; /* 비율 유지하며 이미지 안 잘리게 설정 */
+            display: block;
+            border-radius: 4px;      
+        }
+
+        /* 화면이 너무 좁아질 때(모바일)의 반응형 처리 */
+        @media (max-width: 768px) {
+            .project-wrapper {
+                gap: 10px;
+                padding: 10px;
+            }
+            .modal-content {
+                /* 화면이 아주 작아지면 세로 나열로 전환 */
+                flex-direction: column;
+                align-items: center;
+                margin: 10% auto;
+                width: 90%;          
+                gap: 15px;           
+            }
+            .modal-content img {
+                max-width: 100%;     
+                max-height: 400px;
+            }
+        }
+
+        /* 닫기 버튼 스타일 */
+        .close {
+            position: fixed;
+            right: 25px;
+            top: 15px;
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1100;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <!-- 💡 .logo를 <a> 태그로 감싸서 링크 기능을 추가했습니다 -->
+    <a href="portfolio.html" class="logo">MARKETER GEON</a>
+    
+    <nav class="navbar">
+        <ul class="menu">
+            <li class="menu-item"><a href="portfolio.html#about-me">About</a></li>
+            <li class="menu-item">
+                <a href="portfolio.html#work">Portfolio</a>
+                <ul class="submenu">
+                    <li><a href="detail_template.html">상세페이지</a></li>
+                    <li><a href="detail_yigam.html">산학협력</a></li>
+                    <li><a href="detail_cardnews.html">카드뉴스</a></li>
+                </ul>
+            </li>
+            <li class="menu-item"><a href="portfolio.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="project-header">
+    <h1>상세페이지 디자인</h1>
+    <p>상세페이지 디자인 상세 내용입니다.</p>
+</div>
+
+<div class="project-wrapper">
+    <div class="project-card" onclick="openModal('modal1')">
+        <img src="img/아쿠아세럼1.png" alt="대표이미지1">
+    </div>
+    <div class="project-card" onclick="openModal('modal2')">
+        <img src="img/젠바디2.png" alt="대표이미지2">
+    </div>
+    <div class="project-card" onclick="openModal('modal3')">
+        <img src="img/피치4.png" alt="대표이미지3">
+    </div>
+</div>
+
+<div id="modal1" class="modal">
+    <span class="close" onclick="closeModal('modal1')">&times;</span>
+    <div class="modal-content">
+        <img src="img/아쿠아세럼1.png">
+        <img src="img/아쿠아세럼2.png">
+    </div>
+</div>
+
+<div id="modal2" class="modal">
+    <span class="close" onclick="closeModal('modal2')">&times;</span>
+    <div class="modal-content">
+        <img src="img/젠바디1.png">
+        <img src="img/젠바디2.png">
+        <img src="img/젠바디3.png">
+    </div>
+</div>
+
+<div id="modal3" class="modal">
+    <span class="close" onclick="closeModal('modal3')">&times;</span>
+    <div class="modal-content">
+        <img src="img/피치1.png">
+        <img src="img/피치4.png">
+        <img src="img/피치6.png">
+    </div>
+</div>
+
+<script>
+    function openModal(id) { document.getElementById(id).style.display = "block"; }
+    function closeModal(id) { document.getElementById(id).style.display = "none"; }
+</script>
+</body>
+</html>

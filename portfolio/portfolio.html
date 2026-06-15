@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PORTFOLIO | CONTENT MARKETER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        /* 클릭 시 해당 영역으로 부드럽게 스크롤되도록 애니메이션 효과를 추가합니다. */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .about-me-intro {
+        font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+        background-color: #ffffff;
+        color: #333333;
+        padding: 60px 40px;
+        letter-spacing: -0.02em;
+    }
+
+    .intro-container {
+        max-width: 1140px;
+        margin: 0 auto;
+    }
+
+    /* 헤더 영역 */
+    .intro-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 15px;
+        margin-bottom: 40px;
+    }
+
+    .section-number {
+        font-size: 18px;
+        font-weight: 700;
+        color: #111111;
+    }
+
+    .section-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #666666;
+        margin: 0;
+    }
+
+    /* 메인 본문 2단 배치 */
+    .intro-main {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    /* 왼쪽 프로필 사진 */
+    .profile-side {
+        display: table-cell;
+        width: 300px;
+        vertical-align: top;
+    }
+
+    .profile-box {
+        width: 260px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .profile-box img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* 오른쪽 상세 내용 */
+    .content-side {
+        display: table-cell;
+        vertical-align: top;
+        padding-left: 40px;
+    }
+
+    .user-info {
+        margin-bottom: 25px;
+    }
+
+    .user-name {
+        font-size: 28px;
+        font-weight: 800;
+        color: #111111;
+        margin: 0 0 10px 0;
+    }
+
+    .user-tagline {
+        font-size: 16px;
+        color: #4b5563;
+        margin: 0;
+        font-weight: 500;
+    }
+
+    /* 철학 및 목표 */
+    .meta-info {
+        background-color: #f9fafb;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .meta-item {
+        margin-bottom: 12px;
+    }
+
+    .meta-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .meta-label {
+        display: inline-block;
+        width: 50px;
+        font-size: 14px;
+        color: #1f2937;
+        font-weight: 700;
+        position: relative;
+    }
+
+    .meta-value {
+        font-size: 14px;
+        color: #4b5563;
+        line-height: 1.5;
+    }
+
+    .text-highlight {
+        color: #1d4ed8; /* 세련된 블루 톤 포인트 */
+        font-weight: 600;
+    }
+
+    /* 자격증 및 교내 활동 (2열 배치) */
+    .history-info {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+        margin-bottom: 35px;
+    }
+
+    .history-card {
+        display: table-cell;
+        width: 50%;
+        vertical-align: top;
+    }
+
+    .history-card:first-child {
+        padding-right: 15px;
+    }
+
+    .history-card:last-child {
+        padding-left: 15px;
+    }
+
+    .history-card h4 {
+        font-size: 15px;
+        font-weight: 700;
+        color: #111111;
+        margin: 0 0 12px 0;
+    }
+
+    .history-card ul {
+        margin: 0;
+        padding-left: 18px;
+    }
+
+    .history-card li {
+        font-size: 13.5px;
+        color: #4b5563;
+        margin-bottom: 8px;
+        line-height: 1.4;
+    }
+
+    /* 툴 숙련도 레이아웃 */
+    .skill-section {
+        border-top: 1px dashed #e5e7eb;
+        padding-top: 25px;
+    }
+
+    .skill-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #111111;
+        margin: 0 0 15px 0;
+    }
+
+    .skill-grid {
+        display: table;
+        width: 100%;
+    }
+
+    .skill-item {
+        display: inline-block;
+        width: 48%;
+        margin-bottom: 16px;
+        vertical-align: middle;
+    }
+
+    .skill-item:nth-child(odd) {
+        margin-right: 4%;
+    }
+
+    /* 아이콘 공통 (실제 아이콘 이미지가 있다면 background-image로 대체 가능) */
+    /* 💡 툴 아이콘 이미지 스타일 (크기를 20px로 많이 축소) */
+.skill-icon-img {
+    display: inline-block;
+    width: 32px;          /* 기존 32px -> 20px로 대폭 축소 */
+    height: 32px;         /* 기존 32px -> 20px로 대폭 축소 */
+    object-fit: contain;  /* 비율은 완벽하게 유지 */
+    vertical-align: middle;
+    margin-right: 10px;    /* 아이콘과 바 사이 간격도 살짝 조정 */
+    border-radius: 4px;   /* 작아진 크기에 맞게 라운딩 조정 */
+}
+
+/* 💡 아이콘이 줄어든 만큼 게이지 바 가로 폭 자동 보정 */
+.progress-bar {
+    display: inline-block;
+    width: calc(100% - 35px); /* 축소된 아이콘 크기에 맞춰 바 너비 확보 */
+    height: 12px;             /* 게이지 바 두께도 아이콘에 맞춰 살짝 슬림하게 조정 */
+    background-color: #e5e7eb;
+    border-radius: 6px;
+    vertical-align: middle;
+    overflow: hidden;
+}
+    .progress-fill {
+        height: 100%;
+        background-color: #111111; /* PPT와 동일한 블랙 매트 게이지 */
+        border-radius: 7px;
+    }
+    </style>
+</head>
+<body>
+
+<header>
+    <!-- 💡 .logo를 <a> 태그로 감싸서 링크 기능을 추가했습니다 -->
+    <a href="portfolio.html" class="logo">MARKETER GEON</a>
+    
+    <nav class="navbar">
+        <ul class="menu">
+            <li class="menu-item"><a href="portfolio.html#about-me">About</a></li>
+            <li class="menu-item">
+                <a href="portfolio.html#work">Portfolio</a>
+                <ul class="submenu">
+                    <li><a href="detail_template.html">상세페이지</a></li>
+                    <li><a href="detail_yigam.html">산학협력</a></li>
+                    <li><a href="detail_cardnews.html">카드뉴스</a></li>
+                </ul>
+            </li>
+            <li class="menu-item"><a href="portfolio.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>MARKETER<br>GEON</h1>
+            <p>Sensible & Sophisticated Content Marketer</p>
+            <a href="#work"><button class="cta-btn">VIEW WORK</button></a>
+        </div>
+    </section>
+
+    <section id="about-me" class="about-me-intro">
+    <div class="intro-container">
+        <div class="intro-header">
+            <span class="section-number">자기소개</span>
+            <h2 class="section-title">ABOUT ME</h2>
+        </div>
+
+        <div class="intro-main">
+            <div class="profile-side">
+                <div class="profile-box">
+                    <img src="img/202527054 장건.png" alt="장건 프로필 사진">
+                </div>
+            </div>
+
+            <div class="content-side">
+                <div class="user-info">
+                    <h3 class="user-name">장건</h3>
+                    <p class="user-tagline">데이터와 크리에이티브의 경계를 허무는 디지털 마케팅 엔지니어입니다.</p>
+                </div>
+
+                <div class="meta-info">
+                    <div class="meta-item">
+                        <strong class="meta-label">철학</strong>
+                        <span class="meta-value">고객의 시선을 멈추게 하고, 마음을 머물게 하는 콘텐츠를 설계합니다.</span>
+                    </div>
+                    <div class="meta-item">
+                        <strong class="meta-label">목표</strong>
+                        <span class="meta-value text-highlight">대중의 시선을 사로잡는 세련된 마케터</span>
+                    </div>
+                </div>
+
+                <div class="history-info">
+                    <div class="history-card">
+                        <h4>🏆 자격증</h4>
+                        <ul>
+                            <li>GTQ 1급</li>
+                        </ul>
+                    </div>
+                    <div class="history-card">
+                        <h4>🏫 교내 활동</h4>
+                        <ul>
+                            <li>인천 서부 경찰서 가정폭력 예방 영상 제작</li>
+                            <li>이감국어교육연구소 산학협력 영상 제작</li>
+                            <li>CUNI 신제품 기획 산학협력 프로젝트</li>
+                            <li>교내 파이썬 경진대회</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="skill-section">
+                    <h4 class="skill-title">🛠 툴 숙련도</h4>
+                    <div class="skill-grid">
+                        <div class="skill-item">
+                            <img src="img/canvalogo.png" alt="Canva" class="skill-icon-img">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 95%;"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <img src="img/Figma_ The Collaborative Interface Design Tool.jpg" alt="Figma" class="skill-icon-img">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <img src="img/다운로드 (11).jpg" alt="Photoshop" class="skill-icon-img">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 90%;"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <img src="img/ssss.jpg" alt="Illustrator" class="skill-icon-img">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <img src="img/video edithg.jpg" alt="Premiere Pro" class="skill-icon-img">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <img src="img/aaaa.jpg" alt="After Effects" class="skill-icon-img">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 75%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> </div> </div> </section>
+
+    <section class="t_work" id="work">
+        <h1>SELECTED WORK</h1>
+        <div class="work">
+            <a href="detail_template.html" class="hexa-link">
+                <div class="hexa">
+                    <div class="shape">
+                        <div class="cap">
+                            <div>
+                                <h3>상세페이지</h3>
+                                <p>Product Description</p>
+                            </div>
+                        </div>
+                        <img src="img/다운로드 (22).jpg" alt="Work01">
+                    </div>
+                </div>
+            </a>
+
+            <a href="detail_yigam.html" class="hexa-link">
+                <div class="hexa">
+                    <div class="shape">
+                        <div class="cap">
+                            <div>
+                                <h3>산학협력</h3>
+                                <p>Industry-Academia Collaboration</p>
+                            </div>
+                        </div>
+                        <img src="img/다운로드 (22).jpg" alt="Work02">
+                    </div>
+                </div>
+            </a>
+
+            <a href="detail_cardnews.html" class="hexa-link">
+                <div class="hexa">
+                    <div class="shape">
+                        <div class="cap">
+                            <div>
+                                <h3>카드뉴스</h3>
+                                <p>Card News</p>
+                            </div>
+                        </div>
+                        <img src="img/다운로드 (22).jpg" alt="Work03">
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="section-inner">
+            <div class="accordion-content">
+                <ul class="accordion">
+                    <!-- 💡 오타 수정 완료: 각 <li>의 끝에 있던 잘못된 기호(})를 정상 </li> 태그로 복구했습니다. -->
+                    <li>
+                        <div class="number">01</div>
+                        <div class="info">
+                            <h2>PHILOSOPHY</h2>
+                            <p>본질을 해체하여 새로운 가치를 발견하는 기획을 추구합니다.</p>
+                        </div>
+                    </li>
+                        <li>
+                            <div class="number">02</div>
+                            <div class="info">
+                                <h2>DATA & CREATIVE</h2>
+                                <p>데이터로 심리를 읽고, 크리에이티브로 시선을 사로잡는 융합적 관점을 지향합니다.</p>
+                            </div>
+                        </li>
+                    <li>
+                        <div class="number">03</div>
+                        <div class="info">
+                            <h2>GOAL</h2>
+                            <p>대중의 시선을 사로잡는 세련된 마케팅 솔루션을 제안합니다.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-logo">MARKETER GEON</div>
+            <div class="footer-info">
+                <p>CONTACT: ryan9875@naver.com</p>
+                <p>PHONE: 010-5643-9490</p>
+                <p>© 2026 GEON. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

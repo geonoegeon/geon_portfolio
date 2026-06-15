@@ -1,0 +1,297 @@
+/* 카드뉴스 프로젝트 전용 독립 스타일시트 */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #f5f6f8;
+}
+
+/* 2. 상단 헤더 타이틀 */
+.news-project-header {
+    text-align: center;
+    padding: 80px 20px 20px 20px;
+}
+.news-project-header h1 {
+    font-size: 28px;
+    color: #222;
+    margin: 0 0 10px 0;
+}
+.news-project-header p {
+    font-size: 16px;
+    color: #666;
+    margin: 0;
+}
+
+/* 3. 카드 레이아웃 영역 */
+.news-project-wrapper {
+    display: flex;
+    flex-direction: row;     
+    justify-content: center; 
+    align-items: stretch;    /* 카드들의 전체 높이를 균일하게 일치 */
+    gap: 30px;               
+    padding: 30px 20px;
+    max-width: 1200px;       
+    margin: 0 auto;          
+}
+
+.news-project-card {
+    cursor: pointer;
+    flex: 1;                 
+    max-width: 320px;        
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;  
+    justify-content: space-between;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.news-project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+/* 세로/정방형 카드뉴스 이미지가 찌그러지거나 잘리지 않도록 맞추는 썸네일 박스 */
+.news-card-img-box {
+    width: 100%;
+    /* height: 380px;  <-- 이 부분을 삭제하거나 주석 처리하세요 */
+    background-color: #fff; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 125%; /* 1:1 비율을 유지하고 싶다면 이 줄을 추가하세요 */
+    position: relative;
+}
+
+.news-project-card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important; /* 비율을 유지하며 전체 노출 */
+    display: block;
+}
+
+/* 카드 하단 텍스트 영역 */
+.news-card-info {
+    padding: 20px 15px;
+    text-align: center;
+    border-top: 1px solid #f0f0f0;
+    background-color: #fff;
+}
+.news-card-info h3 {
+    margin: 0 0 6px 0;
+    font-size: 16px;
+    color: #222;
+    font-weight: bold;
+}
+.news-card-info p {
+    margin: 0;
+    font-size: 13px;
+    color: #888;
+}
+
+/* 4. 모달창 전체 배경 */
+.news-modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.88); 
+}
+
+/* 모달 내부 팝업 콘텐츠 박스 */
+.news-modal-content {
+    background-color: #fff;
+    margin: 3% auto; 
+    padding: 20px;           
+    border-radius: 8px;
+    width: fit-content;      
+    max-width: 90%;          
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;     
+}
+
+/* 모달 안에서 세로형 및 정방형 카드뉴스가 화면 밖으로 탈출하거나 깨지지 않도록 자동 크기 제어 */
+.news-modal-content img {
+    width: auto !important;  
+    max-width: 100%;         
+    max-height: 80vh;        /* 화면 세로 높이의 최대 80%까지만 채우도록 유연하게 축소 */
+    height: auto !important;
+    object-fit: contain !important; /* 원본 16:9, 1:1, 4:5 비율 그대로 온전히 노출 */
+    display: block;
+    border-radius: 4px;      
+}
+
+/* 우측 상단 닫기 버튼 */
+.news-close {
+    position: fixed;
+    right: 25px;
+    top: 15px;
+    color: #fff;
+    font-size: 45px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1100;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    transition: color 0.2s;
+}
+.news-close:hover {
+    color: #ddd;
+}
+
+/* ==========================================
+   헤더 네비게이션 영역 스타일 (수정 및 정렬 최적화)
+   ========================================== */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000000;
+    color: #4A69BD;
+    position: sticky;
+    padding: 0 5rem;
+    top: 0;
+    height: 100px;
+    z-index: 100;
+}
+
+a.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: #4A69BD;       /* 헤더 색상과 동일하게 유지 */
+}
+
+a.logo:hover {
+    color: #EBECF0;
+    transform: scale(1.05);
+}
+
+.navbar .menu { 
+    display: flex; 
+    list-style: none; /* 메인 메뉴 점 제거 */
+    margin: 0;
+    padding: 0;
+}
+
+.menu-item {
+    position: relative;
+    text-align: center;
+    width: 150px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none; /* 리스트 스타일 해제 */
+}
+
+.navbar a {
+    color: #EBECF0;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu-item > a:hover {
+    color: #4A69BD;
+    transform: translateY(-5px);
+}
+
+/* --- 3. 서브메뉴 (동그라미 제거 및 중앙 정렬 완벽 수정) --- */
+.submenu {
+    display: block;
+    opacity: 0;
+    visibility: hidden; 
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background-color: rgba(0, 0, 0, 0.95);
+    min-width: 180px;
+    padding: 15px 0;
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-top: 4px solid #4A69BD;
+    
+    /* 🛠️ [해결] 불필요한 기본 여백과 동그라미 점들을 완전히 제거합니다 */
+    list-style: none; 
+    margin: 0;
+    padding: 10px 0;
+}
+
+.submenu li {
+    list-style: none; /* 🛠️ [해결] 혹시 모를 각 항목의 불릿 기호 재방지 */
+    width: 100%;
+}
+
+.menu-item:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.submenu li a {
+    color: #EBECF0;
+    font-size: 14px;
+    transition: 0.3s;
+    
+    /* 🛠️ [해결] 완벽한 가운데 정렬을 위해 비대칭 패딩을 중앙 정렬 양식으로 교정합니다 */
+    padding: 12px 0; 
+    text-align: center; 
+}
+
+.submenu li a:hover {
+    background-color: #EBECF0;
+    color: #000;
+    /* 🛠️ [해결] 호버 시 텍스트가 오른쪽으로 밀려 삐뚤어지던 비대칭 패딩을 제거 */
+    padding-left: 0; 
+}
+
+/* 태블릿 및 모바일 반응형 분기점 (하단 추가) */
+@media (max-width: 768px) {
+    header {
+        padding: 0 2rem;
+    }
+    .menu-item {
+        width: 100px;
+    }
+    .news-project-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        padding: 15px;
+    }
+    .news-project-card {
+        width: 100%;
+        max-width: 340px;
+    }
+    .news-card-img-box {
+        height: 340px;
+    }
+    .news-modal-content {
+        margin: 15% auto;
+        width: 95%;          
+        padding: 10px;
+    }
+    .news-modal-content img {
+        max-height: 70vh;
+    }
+}

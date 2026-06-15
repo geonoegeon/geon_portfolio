@@ -1,0 +1,382 @@
+@charset "utf-8";
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* --- 1. 기본 설정 및 초기화 --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+body {
+    background-color: #EBECF0; /* 지정하신 메인 배경색 */
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.2;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* --- 2. 헤더 및 네비게이션 --- */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000000;
+    color: #4A69BD;
+    position: sticky;
+    padding: 0 5rem;
+    top: 0;
+    height: 100px;
+    z-index: 100;
+}
+
+/* 기존 .logo 스타일을 a.logo로 변경 */
+a.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: #4A69BD;       /* 헤더 색상과 동일하게 유지 */
+}
+
+a.logo:hover {
+    color: #EBECF0;
+    transform: scale(1.05);
+}
+
+.navbar .menu { display: flex; }
+
+.menu-item {
+    position: relative;
+    text-align: center;
+    width: 150px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar a {
+    color: #EBECF0;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu-item > a:hover {
+    color: #4A69BD;
+    transform: translateY(-5px);
+}
+
+/* --- 3. 서브메뉴 (애니메이션 강화) --- */
+.submenu {
+    display: block;
+    opacity: 0;
+    visibility: hidden; 
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background-color: rgba(0, 0, 0, 0.95);
+    min-width: 180px;
+    padding: 15px 0;
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-top: 4px solid #4A69BD;
+}
+
+.menu-item:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.submenu li a {
+    color: #EBECF0;
+    padding: 12px 25px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.submenu li a:hover {
+    background-color: #EBECF0;
+    color: #000;
+    padding-left: 35px;
+}
+
+/* --- 4. Hero 섹션 (간격 및 타이포그래피 수정안 반영) --- */
+.hero {
+    background-image: url(../img/steve-johnson-8A7JF0cCUsI-unsplash-photoaidcom-invert.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 85vh; /* 조금 더 높게 조정 */
+}
+
+.hero-content h1 {
+    font-size: 5.5rem;      /* 크기 확대 */
+    font-weight: 900;
+    line-height: 1.15;      /* 글자 줄 간격 확보 */
+    letter-spacing: 2px;    /* 자간 확보 */
+    margin-bottom: 2.5rem;  /* 제목과 부제목 사이 여백 */
+    color: #000;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    letter-spacing: 6px;    /* 부제목 자간을 넓혀 세련미 강조 */
+    margin-bottom: 4.5rem;  /* 글자와 버튼 사이 간격 대폭 확대 */
+    color: #333;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.cta-btn {
+    background-color: #000;
+    color: #EBECF0;
+    padding: 1.2rem 3.5rem; /* 버튼 여백 확대 */
+    border: 0;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+    background-color: #4A69BD;
+    color: #fff;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.about-me-intro {
+    min-height: 90vh;
+    width: 100%;
+    background-color: #EBECF0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.intro-content h2 {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #000;
+    
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.intro-content p {
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: 700;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+.intro-content {
+    display: flex;
+    flex-direction: column; /* 제목과 설명은 세로로 */
+    align-items: center;
+    margin-top: 50px;
+}
+
+/* 이미지들을 감싸는 컨테이너를 가로로 배치 */
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px; /* 사진 사이의 간격 */
+    margin-top: 30px;
+}
+
+/* 개별 박스 스타일 */
+.profile-box img {
+    width: 250px; 
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.skill-box img {
+    width: 350px;
+}
+
+.profile-box img,
+.skill-box img {
+    max-width: 100%;  /* 부모 요소 안에서만 보이게 함 */
+    height: auto;     /* 비율 유지 */
+    display: block;
+}
+
+/* --- 5. Work 섹션 --- */
+.t_work {
+    min-height: 80vh;
+    text-align: center;
+    background-color: #000;
+    padding: 120px 0 0 0;
+}
+
+.t_work h1 {
+    color: #EBECF0;
+    font-size: 4rem;
+    margin-bottom: 150px;
+    letter-spacing: -1px;
+}
+
+.work {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.hexa-link {
+    display: inline-block;  /* 혹은 기존 .hexa가 정렬되던 방식에 맞춰 block 등 사용 */
+    text-decoration: none;  /* 밑줄 제거 */
+    color: inherit;         /* 기존 글자 색상 유지 */
+}
+
+.hexa {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    transition: 0.4s;
+}
+
+.hexa:hover { transform: translateY(-30px); }
+
+.shape {
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    width: 100%; height: 100%;
+    overflow: hidden;
+}
+
+.shape img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+
+.cap {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; color: #fff;
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; transition: 0.5s; z-index: 2;
+    background: linear-gradient(to top, rgba(74, 105, 189, 0.8), transparent);
+}
+
+.hexa:hover .cap { opacity: 1; }
+
+/* --- 6. About 섹션 --- */
+.about {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EBECF0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.section-inner {
+    width: 100%;
+    max-width: 100%; 
+    height: 100%;
+}
+
+.accordion-content { 
+    display: flex; 
+    height: 100%;
+}
+
+.accordion { 
+    flex: 1; 
+    display: flex; 
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.accordion li {
+    flex: 1; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    padding: 0 40px;
+    cursor: pointer; 
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    border-right: 1px solid rgba(0,0,0,0.05);
+}
+
+.accordion li:nth-child(1) { background-color: #1a237e; color: #fff; }
+.accordion li:nth-child(2) { background-color: #4A69BD; color: #fff; }
+.accordion li:nth-child(3) { background-color: #EBECF0; color: #333; }
+
+.accordion li:hover { flex: 5; }
+
+.number { font-size: 6rem; font-weight: 900; opacity: 0.3; }
+
+.info { transform: translateY(30px); transition: 0.5s; }
+.info h2 { font-size: 2rem; margin-bottom: 10px; }
+.info p { font-size: 1rem; line-height: 1.5; }
+
+.accordion li:hover .info { transform: translateY(0); }
+.accordion li:hover .info p { opacity: 1; max-height: 300px; margin-top: 20px; }
+
+/* --- 7. Footer --- */
+footer {
+    background-color: #000;
+    color: #EBECF0;
+    padding: 100px 5rem;
+    margin-top: 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(74, 105, 189, 0.3);
+    padding-top: 50px;
+}
+
+.footer-logo {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.footer-info p {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    opacity: 0.7;
+}
+
+.footer-sns { display: flex; gap: 30px; }
+
+.footer-sns a {
+    color: #4A69BD;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    transition: 0.3s;
+}
+
+.footer-sns a:hover {
+    color: #fff;
+    letter-spacing: 2px;
+}
